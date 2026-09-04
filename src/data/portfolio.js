@@ -1,6 +1,6 @@
 export const portfolioData = {
   profile: {
-    name: "Fatima Zahrah",
+    name: "Fanta Kebe",
     title: "Computer Scientist · Applied Computational Science",
     summary: "Computer Science graduate with experience spanning machine learning, software engineering, and cybersecurity. Building intelligent, reliable systems at the intersection of computation, data, and real-world problems.",
     links: { 
@@ -30,44 +30,44 @@ categories: [
       id: "about",
       title: "About",
       description: "Background, education, and technical interests.",
-      askPrompt: "Tell me about Fatima and her technical interests."
+      askPrompt: "Tell me about Fanta and her technical interests."
     },
     {
       id: "projects",
       title: "Projects",
       description: "Machine learning models, full-stack apps, and IoT systems.",
-      askPrompt: "What are Fatima's most technically challenging projects?"
+      askPrompt: "What are Fanta's most technically challenging projects?"
     },
     {
       id: "experience",
       title: "Experience",
       description: "Professional engineering roles and internships.",
-      askPrompt: "Summarise Fatima's professional engineering experience."
+      askPrompt: "Summarise Fanta's professional engineering experience."
     },
     {
       id: "skills",
       title: "Skills",
       description: "Languages, frameworks, ML, and engineering tools.",
-      askPrompt: "What are Fatima's strongest technical skills and where has she applied them?"
+      askPrompt: "What are Fanta's strongest technical skills and where has she applied them?"
     },
     {
       id: "activities",
       title: "Awards & Activities",
       description: "Scholarships, hackathons, and mentoring programs.",
-      askPrompt: "Tell me about Fatima's awards and extracurricular activities."
+      askPrompt: "Tell me about Fanta's awards and extracurricular activities."
     }
     /* 
     {
       id: "learning",
       title: "Current Learning",
       description: "Active study areas and technical development.",
-      askPrompt: "What technical areas is Fatima currently developing?"
+      askPrompt: "What technical areas is Fanta currently developing?"
     },
     {
       id: "notes",
       title: "Technical Notes",
       description: "Architecture diagrams, algorithms, and system designs.",
-      askPrompt: "Summarise Fatima's approach to software architecture."
+      askPrompt: "Summarise Fanta's approach to software architecture."
     } 
     */
   ],
