@@ -12,29 +12,30 @@ const formatMessageText = (text) => {
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i].trim();
     
-    // Check if line is a bullet point (starts with * or - followed by space, but ensure it's not just a formatting asterisk)
+    // Format links [Text](URL), bold **text**, and italic *text*
+    const formatInline = (str) => {
+      return str
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-600 underline hover:text-blue-800 font-medium">$1 ↗</a>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+    };
+
     const isBullet = (line.startsWith('* ') || line.startsWith('- ')) && line.length > 2;
     
     if (isBullet) {
-      const content = line.substring(2).trim();
-      const formattedContent = content
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
-      
+      const content = formatInline(line.substring(2).trim());
       if (!inList) {
         htmlLines.push('<ul class="list-disc list-inside space-y-1.5 my-2">');
         inList = true;
       }
-      htmlLines.push(`<li>${formattedContent}</li>`);
+      htmlLines.push(`<li>${content}</li>`);
     } else {
       if (inList) {
         htmlLines.push('</ul>');
         inList = false;
       }
       if (line) {
-        const formattedLine = line
-          .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-          .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+        const formattedLine = formatInline(line);
         htmlLines.push(`<p class="mb-1.5">${formattedLine}</p>`);
       }
     }
@@ -115,6 +116,8 @@ export default function Chatbot({ inputValue, setInputValue, onClose, activeCate
               - Keep responses extremely brief, punchy, and scannable (max 2-3 short sentences or clean bullet points).
               - Format for a busy recruiter: highlight impact, tech stack, and key metrics immediately.
               - Do not use dense paragraphs, conversational filler, or raw markdown clutter.
+              - When asked for a CV, provide the link as: [Download CV](/cv.pdf).
+              - When asked for GitHub or LinkedIn, provide them using markdown links: [GitHub](https://github.com/fantaAstic) or [LinkedIn](https://www.linkedin.com/in/fanta-kebe-287701247/).
               - STRICT RULE: Only use information retrieved from the portfolio context below. Never assume or invent facts.`
             }]
           },

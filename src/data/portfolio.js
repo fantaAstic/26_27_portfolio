@@ -3,7 +3,11 @@ export const portfolioData = {
     name: "Fatima Zahrah",
     title: "Computer Scientist · Applied Computational Science",
     summary: "Computer Science graduate with experience spanning machine learning, software engineering, and cybersecurity. Building intelligent, reliable systems at the intersection of computation, data, and real-world problems.",
-    links: { cv: "#", github: "#", linkedin: "#" }
+    links: { 
+      cv: "/cv.pdf", 
+      github: "https://github.com/fantaAstic", 
+      linkedin: "https://www.linkedin.com/in/fanta-kebe-287701247/" 
+    }
   },
   aboutContent: {
     bio: "Computer Science graduate with experience across machine learning, software engineering and cybersecurity. Interested in building intelligent and reliable systems that combine computation, data and practical engineering.",
