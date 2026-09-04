@@ -305,10 +305,34 @@ export default function App() {
               <p className="max-w-2xl text-gray-700 leading-relaxed">
                 {portfolioData.profile.summary}
               </p>
-              <div className="flex gap-4 mt-6">
-                <a href={portfolioData.profile.links.cv} className="text-sm font-medium text-blue-600 hover:underline">CV</a>
-                <a href={portfolioData.profile.links.github} className="text-sm font-medium text-blue-600 hover:underline">GitHub</a>
-                <a href={portfolioData.profile.links.linkedin} className="text-sm font-medium text-blue-600 hover:underline">LinkedIn</a>
+              <div className="flex items-center gap-6 mt-6">
+                <a 
+                  href={portfolioData.profile.links.cv} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-gray-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+                >
+                  <span>CV</span>
+                  <span className="text-lg leading-none">↗</span>
+                </a>
+                <a 
+                  href={portfolioData.profile.links.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-gray-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+                >
+                  <span>GitHub</span>
+                  <span className="text-lg leading-none">↗</span>
+                </a>
+                <a 
+                  href={portfolioData.profile.links.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-gray-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+                >
+                  <span>LinkedIn</span>
+                  <span className="text-lg leading-none">↗</span>
+                </a>
               </div>
             </header>
 
