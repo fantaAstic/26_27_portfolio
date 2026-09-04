@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Dashboard({ categories, onAsk }) {
+export default function Dashboard({ categories, onAsk, onExplore }) {
   return (
     <section>
       <div className="flex justify-between items-end mb-6">
@@ -19,7 +19,10 @@ export default function Dashboard({ categories, onAsk }) {
             </div>
             
             <div className="flex gap-4 mt-6 pt-4 border-t border-gray-50">
-              <button className="text-sm font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+              <button 
+                onClick={() => onExplore(cat)}
+                className="text-sm font-semibold text-gray-900 hover:text-blue-600 transition-colors"
+              >
                 Explore
               </button>
               <button 

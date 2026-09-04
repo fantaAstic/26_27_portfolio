@@ -6,6 +6,7 @@ import { portfolioData } from './data/portfolio';
 export default function App() {
   const [chatInput, setChatInput] = useState("");
   const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   // Triggered when a user clicks "Ask ->" on a card
   const handlePreFillPrompt = (prompt) => {
@@ -16,25 +17,57 @@ export default function App() {
   return (
     <div className="flex h-screen bg-gray-50 font-sans text-gray-900 overflow-hidden">
       
-      {/* LEFT: Dashboard (70% on desktop, 100% on mobile) */}
-      <main className="w-full lg:w-[68%] h-full overflow-y-auto p-6 md:p-12">
-        <header className="mb-12 border-b border-gray-200 pb-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">{portfolioData.profile.name}</h1>
-          <h2 className="text-xl text-gray-600 mb-4">{portfolioData.profile.title}</h2>
-          <p className="max-w-2xl text-gray-700 leading-relaxed">
-            {portfolioData.profile.summary}
-          </p>
-          <div className="flex gap-4 mt-6">
-            <a href="#" className="text-sm font-medium text-blue-600 hover:underline">CV</a>
-            <a href="#" className="text-sm font-medium text-blue-600 hover:underline">GitHub</a>
-            <a href="#" className="text-sm font-medium text-blue-600 hover:underline">LinkedIn</a>
-          </div>
-        </header>
+      {/* LEFT: Main Content Area */}
+      <main className="w-full lg:w-[68%] h-full overflow-y-auto p-6 md:p-12 relative">
+        
+        {/* VIEW 1: Detail View (Shows if a category is clicked) */}
+        {activeCategory ? (
+          <div className="animate-fade-in pb-12">
+            <button 
+              onClick={() => setActiveCategory(null)}
+              className="mb-8 text-sm font-semibold text-gray-500 hover:text-gray-900 flex items-center gap-2 transition-colors"
+            >
+              ← Back to Home
+            </button>
+            
+            <header className="mb-10">
+              <h2 className="text-4xl font-bold tracking-tight mb-2">{activeCategory.title}</h2>
+              <p className="text-xl text-gray-600">{activeCategory.description}</p>
+            </header>
 
-        <Dashboard onAsk={handlePreFillPrompt} categories={portfolioData.categories} />
+            <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm min-h-[400px]">
+              <p className="text-gray-500 italic">
+                This is the dedicated space for the {activeCategory.title} data. 
+                In the next iteration, we will map over portfolioData.{activeCategory.id} here.
+              </p>
+            </div>
+          </div>
+        ) : (
+          /* VIEW 2: Homepage Dashboard (Default) */
+          <div className="animate-fade-in">
+            <header className="mb-12 border-b border-gray-200 pb-8">
+              <h1 className="text-4xl font-bold tracking-tight mb-2">{portfolioData.profile.name}</h1>
+              <h2 className="text-xl text-gray-600 mb-4">{portfolioData.profile.title}</h2>
+              <p className="max-w-2xl text-gray-700 leading-relaxed">
+                {portfolioData.profile.summary}
+              </p>
+              <div className="flex gap-4 mt-6">
+                <a href={portfolioData.profile.links.cv} className="text-sm font-medium text-blue-600 hover:underline">CV</a>
+                <a href={portfolioData.profile.links.github} className="text-sm font-medium text-blue-600 hover:underline">GitHub</a>
+                <a href={portfolioData.profile.links.linkedin} className="text-sm font-medium text-blue-600 hover:underline">LinkedIn</a>
+              </div>
+            </header>
+
+            <Dashboard 
+              categories={portfolioData.categories} 
+              onAsk={handlePreFillPrompt} 
+              onExplore={setActiveCategory}
+            />
+          </div>
+        )}
       </main>
 
-      {/* RIGHT: Chatbot (30% on desktop, hidden on mobile unless toggled) */}
+      {/* RIGHT: Chatbot */}
       <aside className={`
         fixed inset-y-0 right-0 z-50 w-full bg-white border-l border-gray-200 flex flex-col shadow-2xl lg:shadow-none transition-transform duration-300
         lg:relative lg:w-[32%] lg:translate-x-0
