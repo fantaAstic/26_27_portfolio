@@ -1,7 +1,7 @@
 export const portfolioData = {
   profile: {
     name: "Fanta Kebe",
-    title: "Computer Scientist · Applied Computational Science",
+    title: "Computer Scientist · Software Engineer",
     summary: "Computer Science graduate with experience spanning machine learning, software engineering, and cybersecurity. Building intelligent, reliable systems at the intersection of computation, data, and real-world problems.",
     links: { 
       cv: "/cv.pdf", 
